@@ -9,6 +9,7 @@ use binance::general::*;
 use binance::market::*;
 use binance::rest_model::{OrderSide, OrderType, SymbolPrice, TimeInForce};
 use env_logger::Builder;
+use rust_decimal::Decimal;
 
 #[tokio::main]
 async fn main() {
@@ -68,7 +69,7 @@ async fn account() {
 
     let limit_buy = OrderRequest {
         symbol: symbol.to_string(),
-        quantity: Some(0.001),
+        quantity: Some(Decimal::try_from(0.001).unwrap()),
         price: Some(price),
         order_type: OrderType::Limit,
         side: OrderSide::Buy,
@@ -82,7 +83,7 @@ async fn account() {
 
     let market_buy = OrderRequest {
         symbol: symbol.to_string(),
-        quantity: Some(0.001),
+        quantity: Some(Decimal::try_from(0.001).unwrap()),
         order_type: OrderType::Market,
         side: OrderSide::Buy,
         ..OrderRequest::default()
@@ -94,7 +95,7 @@ async fn account() {
 
     let limit_sell = OrderRequest {
         symbol: symbol.to_string(),
-        quantity: Some(0.001),
+        quantity: Some(Decimal::try_from(0.001).unwrap()),
         price: Some(price),
         order_type: OrderType::Limit,
         side: OrderSide::Sell,
@@ -108,7 +109,7 @@ async fn account() {
 
     let market_sell = OrderRequest {
         symbol: symbol.to_string(),
-        quantity: Some(0.001),
+        quantity: Some(Decimal::try_from(0.001).unwrap()),
         order_type: OrderType::Market,
         side: OrderSide::Sell,
         ..OrderRequest::default()

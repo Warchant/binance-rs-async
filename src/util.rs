@@ -2,6 +2,7 @@ use std::ops::Not;
 
 use boolinator::Boolinator;
 use chrono::{Duration, Utc};
+use rust_decimal::Decimal;
 use serde_json::Value;
 
 use crate::errors::*;
@@ -79,6 +80,10 @@ pub fn to_i64(v: &Value) -> i64 {
 pub fn to_f64(v: &Value) -> f64 {
     // TODO: should this return result?
     v.as_str().unwrap().parse().unwrap()
+}
+
+pub fn to_decimal(v: &Value) -> Decimal {
+    Decimal::from_str_exact(v.as_str().unwrap()).unwrap()
 }
 
 pub fn get_timestamp() -> Result<u64> { Ok(Utc::now().timestamp_millis() as u64) }
